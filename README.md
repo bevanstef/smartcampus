@@ -1,69 +1,34 @@
-Smart Campus API
-Student Name: Balasuriyage Don Chamod Bevan Steferd
+# Smart Campus API
 
-Student ID: 20240913
+**Student Name:** Balasuriyage Don Chamod Bevan Steferd  
+**Student ID:** 20240913  
+**Module:** Client-Server Architectures  
+**Date:** April 24, 2026
 
-Module: Client-Server Architectures
+---
 
-Date: April 24, 2026
+## 📖 Project Overview
 
-Project Overview
-This project is a RESTful API built with JAX-RS (Jersey 2.34, javax namespace) to manage a Smart Campus infrastructure. It allows administrators to manage physical spaces (Rooms), deploy IoT hardware (Sensors), and track historical data (Sensor Readings).
+This project is a RESTful API built with JAX-RS (Jersey 2.34, `javax` namespace) to manage a Smart Campus infrastructure.
 
-The application strictly adheres to the coursework constraints:
+### Architecture (API Design)
 
-No Spring Boot: Built entirely using standard JAX-RS specifications.
+- **model**: Core data POJOs.
+- **store**: Thread-safe `DataStore` using `ConcurrentHashMap`.
+- **resource**: JAX-RS controllers for API endpoints.
+- **exception**: Custom ExceptionMappers for HTTP status codes.
+- **filter**: Logging interceptors for requests/responses.
 
-No External Database: Utilizes an in-memory ConcurrentHashMap for thread-safe data persistence.
+---
 
-Architecture (API Design)
-The source code is organized into a layered, enterprise-grade architecture:
+## 🚀 Build and Run Instructions
 
-model: Encapsulates core data POJOs (Room, Sensor, SensorReading).
+1. Ensure you have **Java 17** and **Maven** installed.
+2. Open your terminal in the project root.
+3. **Build the project:**
 
-store: Manages in-memory data structures via a thread-safe DataStore.
-
-resource: Contains JAX-RS controllers defining the API endpoints.
-
-exception: Houses business logic exceptions and HTTP status mappers.
-
-filter: Contains observability interceptors for request/response logging.
-
-Build and Run Instructions
-To build and run this API locally:
-
-Ensure you have Java 17 and Maven installed.
-
-Open your terminal in the root directory of the project (where pom.xml is located).
-
-Run the following Maven command to build the project:
-
-Bash
+```bash
 mvn clean install
-Start the embedded Grizzly server by running the Main class:
-
-Bash
-mvn exec:java -Dexec.mainClass="Main"
-The API will be locally accessible at: http://localhost:8080/api/v1
-
-Sample cURL Commands
-
-1. Test the Discovery Endpoint (GET)
-
-Bash
-curl -X GET http://localhost:8080/api/v1 2. Create a New Room (POST)
-
-Bash
-curl -X POST http://localhost:8080/api/v1/rooms -H "Content-Type: application/json" -d "{\"id\": \"LAB-101\", \"name\": \"Computer Science Lab\", \"capacity\": 30}" 3. Retrieve All Rooms (GET)
-
-Bash
-curl -X GET http://localhost:8080/api/v1/rooms 4. Register a New Sensor to the Room (POST)
-
-Bash
-curl -X POST http://localhost:8080/api/v1/sensors -H "Content-Type: application/json" -d "{\"id\": \"CO2-101\", \"type\": \"Air Quality\", \"status\": \"ACTIVE\", \"roomId\": \"LAB-101\"}" 5. Post a Deeply Nested Sensor Reading (POST)
-
-Bash
-curl -X POST http://localhost:8080/api/v1/sensors/CO2-101/read -H "Content-Type: application/
 
 Conceptual Report
 
@@ -107,3 +72,4 @@ By exposing raw Java stack traces you create an extremely high security risk. Ra
 Question 10 : Why is it advantageous to use JAX-RS filters for cross-cutting concerns like logging, rather than manually inserting Logger.info() statements inside every single resource method?
 
 By utilizing filters provided by JAX-RS over duplicating code using Logger.info() at both the beginning and end of each method, you are able to centralize all logging functionality, thus leaving the actual business logic free of clutter while also maintaining adherence to the DRY (Don’t Repeat Yourself) principle. Additionally, this approach ensures that all requests/responses will be audited automatically without me having to remember to add logger statements to newly-created endpoints.
+```
