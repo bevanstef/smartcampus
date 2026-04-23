@@ -4,6 +4,7 @@
 **Student ID:** 20240913  
 **Module:** Client-Server Architectures  
 **Date:** April 24, 2026
+**GitHub Repository Link :** https://github.com/bevanstef/smartcampus
 
 ---
 
