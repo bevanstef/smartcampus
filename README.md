@@ -58,7 +58,7 @@ curl -X POST http://localhost:8080/api/v1/sensors -H "Content-Type: application/
 curl -X POST http://localhost:8080/api/v1/sensors/CO2-101/read -H "Content-Type: application/json" -d "{\"value\": 415.5}"
 ```
 
-Conceptual Report
+## Conceptual Report
 
 Question 01 : Explain the default lifecycle of a JAX-RS Resource class. Is a new instance instantiated for every incoming request, or does the runtime treat it as a singleton? Elaborate on how this architectural decision impacts the way you manage and synchronize your in-memory data structures (maps/lists) to prevent data loss or race conditions.
 
