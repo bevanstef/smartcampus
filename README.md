@@ -7,7 +7,7 @@
 
 ---
 
-## 📖 Project Overview
+## Project Overview
 
 This project is a RESTful API built with JAX-RS (Jersey 2.34, `javax` namespace) to manage a Smart Campus infrastructure.
 
@@ -21,7 +21,7 @@ This project is a RESTful API built with JAX-RS (Jersey 2.34, `javax` namespace)
 
 ---
 
-## 🚀 Build and Run Instructions
+## Build and Run Instructions
 
 1. Ensure you have **Java 17** and **Maven** installed.
 2. Open your terminal in the project root.
@@ -29,6 +29,34 @@ This project is a RESTful API built with JAX-RS (Jersey 2.34, `javax` namespace)
 
 ```bash
 mvn clean install
+```
+
+4. Start the server:
+
+```bash
+mvn exec:java -Dexec.mainClass="Main"
+```
+
+5. The API will be locally accessible at: `http://localhost:8080/api/v1/`
+
+## Sample cURL Commands
+
+```bash
+# Test Discovery (GET)
+curl -X GET http://localhost:8080/api/v1
+
+# Create Room (POST)
+curl -X POST http://localhost:8080/api/v1/rooms -H "Content-Type: application/json" -d "{\"id\": \"LAB-101\", \"name\": \"Computer Science Lab\", \"capacity\": 30}"
+
+# Get All Rooms (GET)
+curl -X GET http://localhost:8080/api/v1/rooms
+
+# Register Sensor (POST)
+curl -X POST http://localhost:8080/api/v1/sensors -H "Content-Type: application/json" -d "{\"id\": \"CO2-101\", \"type\": \"Air Quality\", \"status\": \"ACTIVE\", \"roomId\": \"LAB-101\"}"
+
+# Post Reading (POST)
+curl -X POST http://localhost:8080/api/v1/sensors/CO2-101/read -H "Content-Type: application/json" -d "{\"value\": 415.5}"
+```
 
 Conceptual Report
 
@@ -72,4 +100,3 @@ By exposing raw Java stack traces you create an extremely high security risk. Ra
 Question 10 : Why is it advantageous to use JAX-RS filters for cross-cutting concerns like logging, rather than manually inserting Logger.info() statements inside every single resource method?
 
 By utilizing filters provided by JAX-RS over duplicating code using Logger.info() at both the beginning and end of each method, you are able to centralize all logging functionality, thus leaving the actual business logic free of clutter while also maintaining adherence to the DRY (Don’t Repeat Yourself) principle. Additionally, this approach ensures that all requests/responses will be audited automatically without me having to remember to add logger statements to newly-created endpoints.
-```
