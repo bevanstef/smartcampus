@@ -11,7 +11,7 @@
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
-        <jersey.version>2.34</jersey.version>
+        <jersey.version>2.43</jersey.version>
     </properties>
 
     <dependencies>
